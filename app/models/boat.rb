@@ -26,15 +26,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    sailboats = []
-    Boat.all.each do |boat|
-      boat.classifications.each do |c|
-        if c.name == "Sailboat"
-          sailboats << boat
-        end
-      end
-    end
-    sailboats
+    Boat.joins(:classifications).where('classifications.name' => 'Sailboat')
+  end
+
+  def self.with_three_classifications
+    a = Boat.joins(:classifications).where('boat.classifications.length' > '3')
+    binding.pry
   end
 
 end

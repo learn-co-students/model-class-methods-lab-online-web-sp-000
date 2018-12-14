@@ -1,5 +1,18 @@
 
+sailboats = []
+Boat.all.each do |boat|
+  boat.classifications.each do |c|
+    if c.name == "Sailboat"
+      sailboats << boat
+    end
+  end
+end
+
+return sailboats
+
 # Model Class Methods Lab
+
+
 
 ## Instructions
 
