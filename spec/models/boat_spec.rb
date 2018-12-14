@@ -42,6 +42,12 @@ describe Boat do
       expect(Boat.sailboats.pluck(:name)).to eq(boats)
     end
   end
+  # "H 28"
+  # "Nacra 17"
+  # "49er"
+  # "Laser"
+  # "Harpoon 4.7"
+  # "Sunfish"
 
   describe "::with_three_classifications" do
     it "returns boats with three classifications" do
