@@ -30,8 +30,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    a = Boat.joins(:classifications).where('boat.classifications.length' > '3')
-    binding.pry
+    a = Boat.joins(:classifications)
+  
+    Boat.joins(:classifications).group("classifications.length").having('count(*) = 3')
   end
+
+
 
 end

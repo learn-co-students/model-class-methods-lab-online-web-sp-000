@@ -1,17 +1,15 @@
 
-sailboats = []
-Boat.all.each do |boat|
-  boat.classifications.each do |c|
-    if c.name == "Sailboat"
-      sailboats << boat
-    end
-  end
-end
-
-return sailboats
 
 # Model Class Methods Lab
 
+
+three_plus = []
+Boat.all.each do |b|
+  if b.classifications.length >= 3
+    three_plus << b
+  end
+end
+three_plus
 
 
 ## Instructions
