@@ -1,5 +1,16 @@
 
+
 # Model Class Methods Lab
+
+
+three_plus = []
+Boat.all.each do |b|
+  if b.classifications.length >= 3
+    three_plus << b
+  end
+end
+three_plus
+
 
 ## Instructions
 
