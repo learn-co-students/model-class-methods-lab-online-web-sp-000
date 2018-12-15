@@ -7,8 +7,7 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    binding.pry
-    self.all.where(Boat.longest)
+    Boat.longest.classifications
   end
 
 end
