@@ -30,11 +30,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    a = Boat.joins(:classifications)
-  
-    Boat.joins(:classifications).group("classifications.length").having('count(*) = 3')
+    Boat.joins(:classifications).group("boats.id").having('count(*) = 3')
   end
 
+  def self.longest
+    Boat.order(length: :desc).limit(1)
 
+  end
 
 end
