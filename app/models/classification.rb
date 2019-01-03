@@ -6,4 +6,8 @@ class Classification < ActiveRecord::Base
     all
   end
 
+  def longest
+    
+  end
+
 end
