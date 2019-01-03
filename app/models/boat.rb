@@ -24,12 +24,11 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    sailboat = Classification.find_by(name: "Sailboat")
-    Boat.where(classifications.include? sailboat)
+    includes(:classifications).where('classifications.name=?', 'Sailboat').references(:classifications)
   end
 
   def self.with_three_classifications
-    where(classifications.count == 3)
+    all.select { |b| b.classifications.count == 3 }
   end
 
 end
