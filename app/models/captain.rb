@@ -23,9 +23,14 @@ class Captain < ActiveRecord::Base
     
     # Captain.joins(:boat => :classification).where(boats: {classification: {id: cat_class.id}}) # empty
     
+    Captain.includes(boats: :classifications).where(classifications: {name: "Catamaran"})
+
     cat_class = Classification.find_by(name: "Catamaran")
-    c = Captain.joins("INNER JOIN boats ON boats.captain_id = captains.id INNER JOIN boat_classifications ON boats.id = boat_id WHERE classification_id=#{cat_class.id}")
-    # binding.pry
+    c = Captain.joins("""
+      INNER JOIN boats ON boats.captain_id = captains.id 
+      INNER JOIN boat_classifications ON boats.id = boat_id 
+      WHERE classification_id=#{cat_class.id}
+      """)
 
   end
 
