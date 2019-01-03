@@ -19,4 +19,17 @@ class Boat < ActiveRecord::Base
     order('name DESC').limit(3)
   end
 
+  def self.without_a_captain
+    where(captain: nil)
+  end
+
+  def self.sailboats
+    sailboat = Classification.find_by(name: "Sailboat")
+    Boat.where(classifications.include? sailboat)
+  end
+
+  def self.with_three_classifications
+    where(classifications.count == 3)
+  end
+
 end
