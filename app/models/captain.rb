@@ -15,7 +15,8 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    self.joins(boats: [:classifications]).where("classifications.name != ?", "Sailboat")
+    sailors_ids = self.sailors.pluck(:id)
+    self.where("id NOT IN (?)", sailors_ids)
   end
 
 end
