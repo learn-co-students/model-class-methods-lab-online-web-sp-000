@@ -7,5 +7,9 @@ class Boat < ActiveRecord::Base
      @boats = Boat.limit(5)
   end
 
+  def self.dinghy
+    binding.pry
+    @boats = Boat.where(length < 20)
+  end
 
 end
