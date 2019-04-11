@@ -4,12 +4,27 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-     @boats = Boat.limit(5)
+     Boat.limit(5)
   end
 
   def self.dinghy
-    binding.pry
-    @boats = Boat.where(length < 20)
+    Boat.where("length <= 20")
+  end
+
+  def self.ship
+    Boat.where("length > 20")
+  end
+
+  def self.last_three_alphabetically
+    Boat.order(name: :desc).limit(3)
+  end
+
+  def self.without_a_captain
+    Boat.where(captain_id: nil)
+  end
+
+  def self.sailboats
+    Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
   end
 
 end
