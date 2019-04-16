@@ -1,6 +1,8 @@
 require 'spec_helper'
 
+
 describe Boat do
+
   describe "::first_five" do
     it "returns the first five Boats" do
       boats = ["H 28", "Nacra 17", "Regulator 34SS", "Zodiac CZ7", "Boston Whaler"]
@@ -49,5 +51,4 @@ describe Boat do
       expect(Boat.with_three_classifications.pluck(:name).sort).to eq(boats)
     end
   end
-
 end
