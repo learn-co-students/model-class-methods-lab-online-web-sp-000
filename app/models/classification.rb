@@ -4,10 +4,15 @@ class Classification < ActiveRecord::Base
 
   def self.my_all
     # all
+    self.all
   end
 
+  
   def self.longest
     # Boat.longest.classifications
+
+    max_length = self.includes(:boats).maximum("boats.length")
+    self.includes(:boats).where("boats.length = ?", max_length)
   end
 
 end
