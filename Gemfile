@@ -12,7 +12,7 @@ gem 'sqlite3', '~>1.3.6'
 
 group :development, :test do
   gem 'rack_session_access'
-  gem "capybara"
+  gem "capybara", '~>2.4.0'
   gem "database_cleaner"
   gem "pry-byebug"
   gem "rspec-rails"
