@@ -12,7 +12,7 @@ In programming, a good maxim is this:
 
 For example, you don't want to use JavaScript to build a computer for flying to
 the Moon. JavaScript doesn't have very good decimal precision and, at distances
-as far as the Moon, getting a number off in the hundred-thousandths point after
+as far as the Moon,getting a number off in the hundred-thousandths point after
 the decimal is the difference between landing on that celestial orb or taking a
 long trip through nothing, forever.
 
@@ -49,7 +49,7 @@ lets us query the database, via ActiveRecord in an object-oriented-looking way
 ## Use ActiveRecord's AREL Library To Build Optimized Queries
 
 In this lab, we've provided the solution (commented out) to the tests. You
-should step through the tests and "fix" each method to make the test pass. 
+should step through the tests and "fix" each method to make the test pass.
 
 As you uncomment, be sure to evaluate the implementation we've provided you.
 Methods like `order`, `where`, `includes` are all part of the AREL engine. You
