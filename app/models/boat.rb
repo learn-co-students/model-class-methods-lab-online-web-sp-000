@@ -4,42 +4,36 @@ class Boat < ActiveRecord::Base
   has_many    :classifications, through: :boat_classifications
 
   def self.first_five
-    # all.limit(5)
+    # Boat.first 5    #=> This works, but tests don't allow it
+    Boat.order(id: :asc).limit(5)
   end
 
   def self.dinghy
-    # where("length < 20")
+    Boat.where("length < ?", 20)
   end
 
   def self.ship
-    # where("length >= 20")
+    Boat.where("length >= ?", 20)
   end
 
   def self.last_three_alphabetically
-    # all.order(name: :desc).limit(3)
-  end
-
-  def self.without_a_captain
-    # where(captain_id: nil)
-  end
-
-  def self.sailboats
-    # includes(:classifications).where(classifications: { name: 'Sailboat' })
-  end
-
-  def self.with_three_classifications
-    # This is really complex! It's not common to write code like this
-    # regularly. Just know that we can get this out of the database in
-    # milliseconds whereas it would take whole seconds for Ruby to do the same.
-    #
-    # joins(:classifications).group("boats.id").having("COUNT(*) = 3").select("boats.*")
-  end
-
-  def self.non_sailboats
-    # where("id NOT IN (?)", self.sailboats.pluck(:id))
+    Boat.order(name: :desc).limit(3)
   end
 
   def self.longest
-    # order('length DESC').first
+    length = Boat.order(length: :desc).limit(1).first.length
+    Boat.where('length = ?', length)
+  end
+
+  def self.without_a_captain
+    Boat.where(captain_id: nil)
+  end
+
+  def self.sailboats
+    Boat.joins(:classifications).where(classifications: {name: "Sailboat"})
+  end
+
+  def self.with_three_classifications 
+    Boat.joins(:classifications).group('boat_id').having('count(classification_id) = ?', 3)
   end
 end
